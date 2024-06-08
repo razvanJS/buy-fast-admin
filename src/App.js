@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Route,Routes } from 'react-router';
+import Navigation from './routs/navigation/navigation.component';
+import { GlobalStyle } from './App.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrdersStart, orderDetailsAction,orderDetailsIdAction } from './store/orders/orders-actions.js';
+import { useEffect } from 'react';
+
+import OrdersDetailsRoute from './routs/orders/ordersDetailsRoute.component.jsx';
+
+
+const App=()=>{
+
+  const dispatch=useDispatch()
+
+  useEffect(()=>{
+    dispatch(fetchOrdersStart())
+   },[])
+  
+ 
+
+  
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+<>
+    <Routes>
+    <Route path='/'element={<Navigation/>}>
+     <Route path='/orders/*' element={<OrdersDetailsRoute/>}></Route> 
+     <Route path='/auth' element={<p>SignIn</p>}></Route> 
+   
+
+       
+    </Route>
+  </Routes>
+  <GlobalStyle>
+     
+
+
+  </GlobalStyle>
+ 
+  </>
+  )
 }
 
 export default App;
