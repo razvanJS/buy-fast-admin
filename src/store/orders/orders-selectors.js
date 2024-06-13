@@ -6,10 +6,7 @@ export  const ordersDataSelect=createSelector(
     (slice)=>slice.ordersData
 )
 
-export  const isRemoveBtnCliked=createSelector(
-    [ordersReducer],
-    (slice)=>slice.removeBtnCLiked
-)
+
 export const ordersItemReducer=(state)=>state.orders.orderItemRemove
 export const itsOrderItemRemove=createSelector(
     [ordersItemReducer],

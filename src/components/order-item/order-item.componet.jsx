@@ -4,24 +4,24 @@ import { OrderItemContainer,RemoveBtnDiv,RemoveBtn,SpanFnLn,SpanTotalPrice,Order
 
 import Button from "../button/button.component"
 
-import { useDispatch, useSelector } from "react-redux"
-import { orderDetailsSucces, removeOrderItemStart } from "../../store/orders/orders-actions"
-import { isRemoveBtnCliked } from "../../store/orders/orders-selectors"
-import { removeBtnCliked } from "../../store/orders/orders-actions"
+import { useDispatch} from "react-redux"
+import { removeOrderItemStart } from "../../store/orders/orders-actions"
+
 
 import { tr } from "date-fns/locale/tr"
 import RemoveOrderComponent from "../remove-order/remove-order.componet"
-import { Navigate, useNavigate } from "react-router"
-import { useEffect } from "react"
-import { ordersDataSelect } from "../../store/orders/orders-selectors"
+import {  useNavigate } from "react-router"
+import { useState } from "react"
+
+
 
 const OrderItem=({orderValue})=>{
    
-    const ordersData=useSelector(ordersDataSelect)
+    
     const dispatch=useDispatch()
-   const isRemoveBtnClicked=useSelector(isRemoveBtnCliked)
-
-   const removeXbtnEvent=()=>isRemoveBtnClicked?dispatch(removeBtnCliked(false)):dispatch(removeBtnCliked(true))
+  const [isRemoveBtnClicked,setIsRemoveBtnClicked]=useState(false)
+   
+   const removeXbtnEvent=()=>isRemoveBtnClicked?setIsRemoveBtnClicked(false):setIsRemoveBtnClicked(true)
    const removeItemEvent=()=>dispatch(removeOrderItemStart(orderValue.uid))
    const nav=useNavigate()
   
@@ -49,7 +49,9 @@ const OrderItem=({orderValue})=>{
                      <SpanTotalPrice>{orderValue.total}</SpanTotalPrice>
                      {isRemoveBtnClicked===false?<><Button onClick={btnNavigationEvent} type='inverted'>Details</Button></>:
                      <>
-                     <RemoveOrderComponent removeItemEvent={removeItemEvent}></RemoveOrderComponent>
+                     <RemoveOrderComponent removeItemEvent={removeItemEvent}
+                      isRemoveBtnClicked={isRemoveBtnClicked}
+                       setIsRemoveBtnClicked={setIsRemoveBtnClicked}></RemoveOrderComponent>
                       </>
                         }
                     

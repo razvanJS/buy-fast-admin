@@ -9,7 +9,6 @@ export const removeOrderItemStart=(uid)=>createAction(ORDERS_TYPES.REMOVE_ORDER_
 export const removeOrderItemFaild=(err)=>createAction(ORDERS_TYPES.REMOVE_ORDER_DATA_FAILD,err)
 export const removeOrderItemSuccess=()=>createAction(ORDERS_TYPES.REMOVE_ORDER_DATA_SUCCESS)
 
-export const removeBtnCliked=(click)=>createAction(ORDERS_TYPES.IS_BTN_CLICKED,click)
 
 export const generateUidAction=(uid)=>createAction(ORDERS_TYPES.GENERATE_UID,uid)
 export const fetchorderDetailsActionStart=(orders,uid)=>{

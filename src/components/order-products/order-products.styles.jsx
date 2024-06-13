@@ -29,6 +29,8 @@ gap:1px
 &:last-child {
   width: 7%;
 }
+
+
 `
 export const CheckoutContainer=styled.div`
 width: 65%;

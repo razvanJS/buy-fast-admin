@@ -27,7 +27,11 @@ text-shadow: 1px 1.4px 1px grey;
 `
 export const BorderDiv=styled.div`
 border:.2rem solid hsla(0, 0%, 63%, .25);
-padding:30px;
+padding:10%;
+border-radius:2%;
+button{
+  width:100%
+}
 `
 export const DetailsContainer=styled.div`
 display: flex;

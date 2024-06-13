@@ -1,19 +1,16 @@
 
-import { useSelector ,useDispatch} from "react-redux"
-import { isRemoveBtnCliked } from "../../store/orders/orders-selectors"
-import { removeBtnCliked } from "../../store/orders/orders-actions"
 import { RemoveElement } from "../order-item/order-item.styled"
 import { Paragraf } from "../order-item/order-item.styled"
 import Button from "../button/button.component"
-import { useNavigate } from "react-router"
-const RemoveOrderComponent=({removeItemEvent})=>{
-    const dispatch=useDispatch()
-    const isRemoveBtnClicked=useSelector(isRemoveBtnCliked)
-    const nav=useNavigate()
+
+
+const RemoveOrderComponent=({removeItemEvent,isRemoveBtnClicked,setIsRemoveBtnClicked})=>{
+
+
     const removeEvent=()=>{
         
       if(isRemoveBtnClicked){
-        dispatch(removeBtnCliked(false))
+        setIsRemoveBtnClicked(false)
       }  
      else return '';
     }

@@ -4,17 +4,19 @@ import { DetailsContainer,SpanDate,SpanPay ,TitleContainer,BorderDiv} from "./or
 import Button from "../button/button.component"
 import { useNavigate } from "react-router"
 import { useParams } from "react-router"
-import { useEffect} from "react"
+import { useEffect, useState} from "react"
 
 import { detailsDataSelect,ordersDataSelect} from "../../store/orders/orders-selectors"
 import { fetchorderDetailsActionStart } from "../../store/orders/orders-actions"
-
+import { getTimeDate } from "../../assets/formatDBdate"
 
 const OrderDeatils=()=>{
    const {orders:uid}=useParams()
   const ordersData=useSelector(ordersDataSelect)
-  const dataOfDetails=useSelector(detailsDataSelect)
+  const dataDetails=useSelector(detailsDataSelect)
  const dispatch=useDispatch()
+ const[dataOfDetails,setDataOfDetails]=useState({})
+
 
  const nav=useNavigate()
  useEffect(()=>{
@@ -22,17 +24,27 @@ const OrderDeatils=()=>{
   dispatch(fetchorderDetailsActionStart({ordersData,uid}))
   
   
- },[dataOfDetails])
+ },[dataDetails,ordersData])
 
+ useEffect(()=>{
+  const getData=async()=>{
+   const details= await dataDetails
+   setDataOfDetails(details)
+
+  }
+  getData()
+
+ },[dataDetails,ordersData])
+ if(!dataOfDetails.total)return
 
 const {clientType}=dataOfDetails
 const btnNavEvent=()=>nav(`/orders/${dataOfDetails.uid}/${dataOfDetails.uid.slice(6)}`)
 
-const timeStamp=dataOfDetails.date
-const date=Date.now(timeStamp)
-const orderDate=new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(date)
 
-console.log(orderDate)
+
+
+
+
 
 
      return (
@@ -44,7 +56,7 @@ console.log(orderDate)
             <BorderDiv>
             <br/>
             <TitleContainer>
-            <SpanDate>{orderDate}</SpanDate>
+            <SpanDate>{getTimeDate(dataOfDetails.date)}</SpanDate>
             <SpanPay>{dataOfDetails.paymentType}</SpanPay>
             
             </TitleContainer>
@@ -71,12 +83,13 @@ console.log(orderDate)
   </>:''}
 
     </form>
-    </BorderDiv>
-    <Button typebutton='inverted' onClick={btnNavEvent}>products</Button>
 
+    <Button typebutton='inverted' onClick={btnNavEvent}>products</Button>
+    </BorderDiv>
     </DetailsContainer>
    
     )
+  
 }
 
 export default OrderDeatils
