@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+
 import OrderDeatils from "../orderDetails/orderDetails.component"
 
 const OrdersRoutsDetails=()=>{

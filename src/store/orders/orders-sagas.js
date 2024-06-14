@@ -2,9 +2,6 @@ import { takeLatest,call,all,put } from "redux-saga/effects";
 import { getOrdersFromDb,deleteDocFromDb } from "../../utils/firebase.utils";
 import { fetchOrdersFaild, fetchOrdersSucces,fetchorderDetailsActionSucces,removeOrderItemFaild,removeOrderItemSuccess } from "./orders-actions";
 import { ORDERS_TYPES } from "./orders-types";
-import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../../utils/firebase.utils"
-import { orderDetailsSucces } from "./orders-actions";
 
 
 
@@ -51,7 +48,7 @@ export function*removeOrderItemSaga(action){
 
 export function* fechorderDetails(action){
     const{payload:{orders:{uid,ordersData}}}=action
-    console.log(uid,ordersData)
+  
     try {
          const detailis= ordersData.filter(data=>data.uid===uid)
         yield detailis
