@@ -10,8 +10,8 @@ const Home=()=>{
 
 return (
     <DirectoryContainer>
-        {directoryData.map(category=><HomeItemCotainer category={category}/>)}
-        {dataLength===5?<HomeItemAddCategory></HomeItemAddCategory>:''}
+        {directoryData.map(category=><HomeItemCotainer key={category.id} category={category}/>)}
+        {dataLength===5?<HomeItemAddCategory ></HomeItemAddCategory>:''}
           
     </DirectoryContainer>
 )

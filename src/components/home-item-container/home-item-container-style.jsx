@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Input } from "../input-form/input-form.styles"
+
 export const BackgroundImage=styled.div`
       width: 100%;
       height: 100%;
@@ -19,13 +19,8 @@ border: 1px solid black;
 background-color: white;
 opacity: 0.7;
 position: absolute;
-${Input}{
-  font-size: 14px;
-  padding: 0;
-  width:60%;
-  margin:0 auto;
-  
-}
+
+
 h2 {
   font-weight: bold;
   margin: 0 6px 0;

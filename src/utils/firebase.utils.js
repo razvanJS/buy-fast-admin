@@ -9,7 +9,9 @@ import {
     collection,
     writeBatch,
     getDocs,
-    deleteDoc
+    deleteDoc,
+    updateDoc,
+    deleteField,
 
  } from "firebase/firestore";
 
@@ -66,3 +68,47 @@ export const deleteDocFromDb=async(colectionName,uid)=>{
    await deleteDoc(doc(db,colectionName,uid))
 
  }
+
+export const updateDocumentDb=async(collectionName,documentName,title)=>{
+   try{
+  
+   const newTitle=title.toLowerCase()
+
+   const oldDocRef=doc(db,collectionName,documentName)
+   //old document ref in DataBase
+
+   const newDocRef=doc(db,collectionName,newTitle)
+    //new document ref in DataBase
+
+   const oldDocSnapShot=await getDoc(oldDocRef)
+    // a way to access the old document data
+
+   if(!oldDocSnapShot.exists())return;
+     
+    const docData=oldDocSnapShot.data()
+    //the data form the document CN->Hats->{data obj}
+
+    await setDoc(newDocRef,docData)
+
+    //set the doc whit the new doc name with the same doc data
+    
+    await deleteDoc(oldDocRef)
+    
+    //delete the old document with the old name hats->Hat
+    if(documentName!==title){
+    await updateDoc(newDocRef,{
+      title:newTitle
+    })
+   }
+
+    //update the title filed
+
+
+ 
+
+} 
+catch(err){
+   alert(err.message)
+}
+
+}
