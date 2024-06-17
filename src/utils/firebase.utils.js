@@ -112,3 +112,10 @@ catch(err){
 }
 
 }
+
+export const updateFieldOnDb=async(collectionName,docName,fildName,newFieldData)=>{
+   const docRef=doc(db,collectionName,docName)
+  await updateDoc(docRef,{
+   [`${fildName}`]:newFieldData
+  })
+}

@@ -5,7 +5,8 @@ const CATEGOIRES_DIRECTORY_INITIAL_STATE={
     categoriesLenght:'',
     isLoading:false,
     error:null,
-    setName:{}
+    setName:{},
+    setImage:{},
 
 }
 
@@ -18,7 +19,10 @@ switch(type){
     case CATEGORIES_DIRECTORY_TYPES.FETCH_CATEGORIES_DIRECTORY_LENGTH:return{...state,categoriesLenght:payload}
     case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_NAME_START:return{...state,setName:payload}
     case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_NAME_FAILD:return{...state,setName:payload}
-    case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_NAME_SUCCESS:return{...state,setName:"success"}
+    case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_NAME_SUCCESS:return{...state,setName:"succes"}
+    case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_IMAGE_START:return{...state,setImage:payload}
+    case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_IMAGE_FAILD:return{...state,setImage:payload}
+    case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_IMAGE_SUCCES:return{...state,setImage:"succes"}
 
 
     default :return state
