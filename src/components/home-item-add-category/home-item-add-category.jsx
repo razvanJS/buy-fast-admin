@@ -1,6 +1,7 @@
 import { ItemContainer,BackgroundImage,ItemBody } from "../home-item-container/home-item-container-style"
 import Button from "../button/button.component"
 
+
 const HomeItemAddCategory=()=>
 
 <ItemContainer>

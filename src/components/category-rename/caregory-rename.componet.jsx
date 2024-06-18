@@ -1,6 +1,6 @@
 import Button from "../button/button.component"
 import { Input } from "../input-form/input-form.styles"
-import { RenameContainer ,RemoveXdiv} from "./category-rename.styles"
+import { RenameContainer ,RemoveXdivRename} from "./category-rename.styles"
 import { useEffect, useState } from "react"
 import { setCategoriesNameStart } from "../../store/categoriesDirectory/categories-directory-actions"
 import { useDispatch } from "react-redux"
@@ -28,7 +28,7 @@ const RenameComponet=({setIsImageDblCkicked,setIsRenameBtnClick,categoryName})=>
     setIsRenameBtnClick(false)}
 return(
     <RenameContainer>
-    <form onSubmit={setCategoriesNameEvent}>  <RemoveXdiv onClick={xEvent}>&#10006;</RemoveXdiv>
+    <form onSubmit={setCategoriesNameEvent}>  <RemoveXdivRename onClick={xEvent}>&#10006;</RemoveXdivRename>
          <Input type='text' name="rename-input" value={inputRenameValue.toLocaleUpperCase()} onChange={inputChangeValueEvent}></Input><br/>
         <Button type='submit'>New Name</Button>
     </form>

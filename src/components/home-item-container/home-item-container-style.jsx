@@ -1,5 +1,5 @@
 import styled from "styled-components"
-
+import { CategoryElementDivRemove } from "../remove-category/remove-category.styled"
 export const BackgroundImage=styled.div`
       width: 100%;
       height: 100%;
@@ -47,6 +47,7 @@ p {
 
 export const ItemContainer=styled.div`
 min-width:30% ;
+
 height:42vh;
 flex: 1 1 auto;
 display: flex;

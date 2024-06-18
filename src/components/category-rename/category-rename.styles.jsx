@@ -19,7 +19,7 @@ button{
 }
 
 `
-export const RemoveXdiv=styled.div`
+export const RemoveXdivRename=styled.div`
 color:red;
 transition:all .2s;
 position:absolute;

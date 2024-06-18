@@ -1,5 +1,5 @@
 import {ImageContainerChange} from "./category-change-image.styled"
-import { RemoveXdiv } from "../category-rename/category-rename.styles"
+import { RemoveXdivRename} from "../category-rename/category-rename.styles"
 import { Input } from "../input-form/input-form.styles"
 import Button from "../button/button.component"
 import { useState } from "react"
@@ -26,7 +26,7 @@ const ChangeImageCategory=({setIsRenameBtnClick,setIsImageDblCkicked,categoryNam
        
         <ImageContainerChange>
        <form onSubmit={onSubmitEvent}>
-            <RemoveXdiv onClick={xEvent}>&#10006;</RemoveXdiv>
+            <RemoveXdivRename onClick={xEvent}>&#10006;</RemoveXdivRename>
           <Input type='text' name="change-image-input" onChange={onChangeEvent} value={inputImageUrlVal.toLocaleUpperCase()}></Input><br/>
         <Button type='submit'>New Image Url</Button>
              </form>
