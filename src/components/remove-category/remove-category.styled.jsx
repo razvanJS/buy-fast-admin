@@ -29,7 +29,6 @@ ${RemoveXdivRename}{
 
 }
 
-
 @media screen and (width:912px){
   height:45%;
 

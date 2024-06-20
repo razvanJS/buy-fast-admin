@@ -6,6 +6,10 @@ export  const ordersDataSelect=createSelector(
     (slice)=>slice.ordersData
 )
 
+export const orderLoad=createSelector(
+    [ordersReducer],
+    (slice)=>slice.isLoading
+)
 
 export const ordersItemReducer=(state)=>state.orders.orderItemRemove
 export const itsOrderItemRemove=createSelector(
@@ -13,6 +17,7 @@ export const itsOrderItemRemove=createSelector(
     (slice)=>slice.value
 
 )
+
 
 
 

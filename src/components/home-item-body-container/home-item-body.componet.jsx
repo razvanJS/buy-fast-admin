@@ -24,7 +24,7 @@ const HomeItemBodyContainer=(
 
    <NewItemBody>
 
- <RemoveCategoryElement></RemoveCategoryElement>
+ <RemoveCategoryElement setIsRemoveXclick={setIsRemoveXclick} isRemoveXclick={isRemoveXclick} categoryName={category.title}></RemoveCategoryElement>
 <RemoveXdivRename onClick={()=>isRemoveXclick?setIsRemoveXclick(false):setIsRemoveXclick(true)}>&#10006;</RemoveXdivRename>
 </NewItemBody>
    

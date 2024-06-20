@@ -1,5 +1,6 @@
 import { RemoveXdivRename } from "../category-rename/category-rename.styles"
 import Button from "../button/button.component"
+
 const HomeItemBodyDefault=({category,isRemoveXclick,setIsRemoveXclick,setIsRenameBtnClick})=>{
 
 

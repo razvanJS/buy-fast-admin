@@ -1,15 +1,17 @@
 import { takeLatest,call,all,put } from "redux-saga/effects";
 import { CATEGORIES_DIRECTORY_TYPES } from "./categories-directory-types";
-import { getOrdersFromDb } from "../../utils/firebase.utils";
+import { deleteDocUsingDocName, getOrdersFromDb ,updateDocumentDb,updateFieldOnDb} from "../../utils/firebase.utils";
 import {fetchCategoriesDirectorySuccess,
     fetchCategoriesDirectoryFaild, 
     fetchCategoriesDirectoryLength ,
     setCategoriesNameSuccess,
     setCategoriesNameFaild,
     setCategoriesImageSuccess,
-    setCategoriesImageFaild
+    setCategoriesImageFaild,
+    setCategoriesRemoveSucces,
+    setCategoriesRemoveFaild,
     } from "./categories-directory-actions";
-import { updateDocumentDb ,updateFieldOnDb} from "../../utils/firebase.utils";
+
 function * getCategoriesFromDb(){
     
 try{
@@ -74,6 +76,20 @@ function *setTheCategoryImage(action){
 
 }
 
+function *setRemoveCategory(action){
+    const {payload:{categoryName}}=action
+   
+   try{
+   yield call(deleteDocUsingDocName,'directory',categoryName)
+   yield call(deleteDocUsingDocName,'categories',categoryName)
+   yield put(setCategoriesRemoveSucces())
+   yield window.location.reload()
+   }
+   catch(error){
+    yield put(setCategoriesRemoveFaild(error.message))
+   }
+}
+
 
 function *onGetCategoriesFromDb(){
     yield takeLatest(CATEGORIES_DIRECTORY_TYPES.FETCH_CATEGORIES_DIRECTORY_START,getCategoriesFromDb)
@@ -86,8 +102,15 @@ function *onSetCategoryTitle(){
 function *onSetCategoryImage(){
     yield takeLatest(CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_IMAGE_START,setTheCategoryImage)
 }
-
+function *onSetRemoveCategory(){
+    yield takeLatest(CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_REMOVE_START,setRemoveCategory)
+}
 
 export function *categiresDirectorySaga(){
-    yield all([call(onGetCategoriesFromDb),call(onSetCategoryTitle),call(onSetCategoryImage)])
+    yield all([
+        call(onGetCategoriesFromDb)
+        ,call(onSetCategoryTitle)
+        ,call(onSetCategoryImage)
+        ,call(onSetRemoveCategory)
+    ])
 }

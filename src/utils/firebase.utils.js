@@ -119,3 +119,8 @@ export const updateFieldOnDb=async(collectionName,docName,fildName,newFieldData)
    [`${fildName}`]:newFieldData
   })
 }
+
+export const deleteDocUsingDocName=async(collectionName,docName)=>{
+   const docRef=doc(db,collectionName,docName)
+   await deleteDoc(docRef)
+}

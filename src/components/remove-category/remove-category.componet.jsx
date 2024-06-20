@@ -1,16 +1,22 @@
 import {CategoryElementDivRemove } from "./remove-category.styled"
-import { Paragraf } from "../order-item/order-item.styled"
 import Button from "../button/button.component"
-const RemoveCategoryElement=()=>{
+import { useDispatch } from "react-redux"
+import { setCategoriesRemoveStart } from "../../store/categoriesDirectory/categories-directory-actions"
 
-
-
+const RemoveCategoryElement=({setIsRemoveXclick,categoryName})=>{
+const dispatch=useDispatch()
+const btnNoEvent=()=>setIsRemoveXclick(false)
+const btnYesEvent=()=>{
+  dispatch(setCategoriesRemoveStart(categoryName))
+   
+     
+}
     return (
         <CategoryElementDivRemove>
 <p>Are you certain that you wish to delete this category?</p>
 
- <Button >NO</Button>
-<Button >YES</Button> 
+ <Button  onClick={btnNoEvent}>NO</Button>
+<Button  onClick={btnYesEvent} >YES</Button> 
    
 
         </CategoryElementDivRemove>

@@ -12,3 +12,7 @@ export const categoriesDirectoryLength=createSelector(
     [categoriesDirectoryReducer],
     (slice)=>slice.categoriesLenght
 )
+export const categoriesLoading=createSelector(
+    [categoriesDirectoryReducer],
+    (slice)=>slice.loadCategories
+)
