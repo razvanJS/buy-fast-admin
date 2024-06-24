@@ -10,20 +10,7 @@ const Home=()=>{
  const dataLength=useSelector(categoriesDirectoryLength)
  const categoriesLoad=useSelector(categoriesLoading)
 
-console.log(categoriesLoad)
-// if(categoriesLoad===true){
-//     <Spinner/>
-// }
-// else{
-// return (
-//     <DirectoryContainer>
-//         {directoryData.map(category=><HomeItemCotainer key={category.id} category={category}/>)}
-//         {dataLength===5?<HomeItemAddCategory ></HomeItemAddCategory>:''}
-          
-//     </DirectoryContainer>
-// )
 
-// }
 if(categoriesLoad===true){
    return  <Spinner/>
 }
@@ -31,7 +18,7 @@ else{
      return (
             <DirectoryContainer>
                 {directoryData.map(category=><HomeItemCotainer key={category.id} category={category}/>)}
-                {dataLength===5?<HomeItemAddCategory ></HomeItemAddCategory>:''}
+                {dataLength<=5?<HomeItemAddCategory ></HomeItemAddCategory>:''}
                   
             </DirectoryContainer>
         )

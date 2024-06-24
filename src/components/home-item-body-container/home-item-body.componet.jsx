@@ -6,6 +6,7 @@ import HomeItemBodyDefault from "../home-body-default/home-body-default.componet
 import RemoveCategoryElement from "../remove-category/remove-category.componet"
 import { NewItemBody } from "../remove-category/remove-category.styled"
 import { ItemBody } from "../home-item-container/home-item-container-style"
+
 const HomeItemBodyContainer=(
     {
   category,

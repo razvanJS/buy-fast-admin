@@ -1,6 +1,6 @@
 import { takeLatest,call,all,put } from "redux-saga/effects";
 import { CATEGORIES_DIRECTORY_TYPES } from "./categories-directory-types";
-import { deleteDocUsingDocName, getOrdersFromDb ,updateDocumentDb,updateFieldOnDb} from "../../utils/firebase.utils";
+import { deleteDocUsingDocName, getOrdersFromDb ,updateDocumentDb,updateFieldOnDb,addDocToDB} from "../../utils/firebase.utils";
 import {fetchCategoriesDirectorySuccess,
     fetchCategoriesDirectoryFaild, 
     fetchCategoriesDirectoryLength ,
@@ -10,7 +10,10 @@ import {fetchCategoriesDirectorySuccess,
     setCategoriesImageFaild,
     setCategoriesRemoveSucces,
     setCategoriesRemoveFaild,
+    setAddNewCategorySucces,
+    setAddNewCategoryFaild
     } from "./categories-directory-actions";
+import { ca } from "date-fns/locale";
 
 function * getCategoriesFromDb(){
     
@@ -89,6 +92,29 @@ function *setRemoveCategory(action){
     yield put(setCategoriesRemoveFaild(error.message))
    }
 }
+function *setAddNewCategory(action){
+
+    const{payload:{data,categoriesData}}=action
+    console.log(data,categoriesData)
+
+    for(let i=0;i<categoriesData.length;i++){
+        if(categoriesData[i].id===data.id)return alert('The ID of the Element already exist');
+    }
+    
+    const categoriesObj={title:data.title}
+  
+    try{
+        yield call(addDocToDB,'directory',data)
+        yield call(addDocToDB,'categories',categoriesObj)
+        yield put(setAddNewCategorySucces())
+        yield window.location.reload()
+    }
+    catch(err){
+        yield put(setAddNewCategoryFaild(err.message))
+    }
+
+    
+}
 
 
 function *onGetCategoriesFromDb(){
@@ -106,11 +132,16 @@ function *onSetRemoveCategory(){
     yield takeLatest(CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_REMOVE_START,setRemoveCategory)
 }
 
+function *onSetAddNewCategory(){
+    yield takeLatest(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_START,setAddNewCategory)
+}
+
 export function *categiresDirectorySaga(){
     yield all([
         call(onGetCategoriesFromDb)
         ,call(onSetCategoryTitle)
         ,call(onSetCategoryImage)
         ,call(onSetRemoveCategory)
+        ,call(onSetAddNewCategory)
     ])
 }

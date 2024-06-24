@@ -62,6 +62,45 @@ h2{
       font-size:11px;
     }
   }
+  @media screen and (width:768px){
+    width:100%;
+    input{
+      font-size:11px;
+    }
+  }
 
+  /* iPad Air */
+  @media only screen and (device-width: 820px) ,
+  and (device-height: 1180px) ,
+  and (orientation : landscape) { 
+    width:100%;
+    input{
+      font-size:18px;
+    }
+  }
+  @media only screen and (device-width: 1024px) ,
+  and (device-height: 1366px) ,
+  and (orientation : landscape) { 
+    width:85%;
+    input{
+      font-size:22px;
+    }
+  }
+  @media only screen and (device-width: 912px) ,
+  and (device-height: 1368px) ,
+  and (orientation : landscape) { 
+    width:90%;
+    input{
+      font-size:22px;
+    }
+  }
+  @media only screen and (device-width: 853px) ,
+  and (device-height: 1280px) ,
+  and (orientation : landscape) { 
+    width:90%;
+    input{
+      font-size:22px;
+    }
+  }
 `
 

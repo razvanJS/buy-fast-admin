@@ -17,3 +17,8 @@ export const setCategoriesImageSuccess=()=>createAction(CATEGORIES_DIRECTORY_TYP
 export const setCategoriesRemoveStart=(categoryName)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_REMOVE_START,{categoryName})
 export const setCategoriesRemoveFaild=(err)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_NAME_FAILD,err)
 export const setCategoriesRemoveSucces=()=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_REMOVE_SUCCES)
+
+
+export const setAddNewCategoryStart=(data,categoriesData)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_START,{data,categoriesData})
+export const setAddNewCategoryFaild=(err)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_FAILD,err)
+export const setAddNewCategorySucces=()=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_SUCCES)

@@ -25,11 +25,15 @@ ${RemoveXdivRename}{
 
 }
 @media screen and (max-width:${breakepointMobile}){
-  height:40%;
+  height:50%;
 
 }
 
 @media screen and (width:912px){
+  height:45%;
+
+}
+@media only screen and (min-width:820px){
   height:45%;
 
 }
@@ -80,7 +84,13 @@ button{
   
     }
   }
-
+  @media only screen and (min-width:820px){
+    height:45%;
+    button{
+      top:60%;
+    }
+  }
+ 
 
   @media screen and (width:375px),screen and (width:344px){
     p{
@@ -118,19 +128,9 @@ button{
         font-size:13px;
     }
     button{
-        top:190%;
-    }
-  } 
-  @media screen and (width:540px){
-    p{
-        font-size:9px;
-    }
-    button{
         top:90%;
-        width:40%;
-        left:-25%;
     }
   } 
- 
+
       
 `

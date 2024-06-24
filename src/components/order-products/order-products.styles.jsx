@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { breakepointMobile,breakepontTablet } from "../../assets/breakepoints"
+import { SpanName } from "../product-order-item/product-order-item.styles"
 
 
 export const SpanTotal=styled.span`
@@ -18,7 +19,12 @@ display: flex;
 gap:3rem;
 justify-content: space-between;
 border-bottom: 1px solid darkgrey;
-
+@media screen and (width:768px) {
+  gap:.5px;
+  margin-left:50px;
+  width: 200%;
+  padding: 10px 0;
+  }
 `
 export const HeaderBlock=styled.div`
 text-transform: capitalize;
@@ -29,6 +35,7 @@ gap:1px
 &:last-child {
   width: 7%;
 }
+
 
 
 `
@@ -108,8 +115,13 @@ margin: 50px auto 0;
   
 }
 
+@media screen and (width:768px) {
+  margin-left:1.20rem ;
+  
+}
 
 }
+
  
 `
 

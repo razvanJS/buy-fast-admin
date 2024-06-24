@@ -6,11 +6,10 @@ import { setCategoriesRemoveStart } from "../../store/categoriesDirectory/catego
 const RemoveCategoryElement=({setIsRemoveXclick,categoryName})=>{
 const dispatch=useDispatch()
 const btnNoEvent=()=>setIsRemoveXclick(false)
-const btnYesEvent=()=>{
-  dispatch(setCategoriesRemoveStart(categoryName))
+const btnYesEvent=()=>dispatch(setCategoriesRemoveStart(categoryName));
    
      
-}
+
     return (
         <CategoryElementDivRemove>
 <p>Are you certain that you wish to delete this category?</p>

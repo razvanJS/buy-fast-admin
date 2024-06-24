@@ -124,3 +124,10 @@ export const deleteDocUsingDocName=async(collectionName,docName)=>{
    const docRef=doc(db,collectionName,docName)
    await deleteDoc(docRef)
 }
+export const addDocToDB=async(collectionName,object)=>{
+  
+   await setDoc(doc(db, collectionName, object.title), {
+      ...object
+    });
+}
+

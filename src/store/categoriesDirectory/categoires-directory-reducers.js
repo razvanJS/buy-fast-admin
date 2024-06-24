@@ -8,6 +8,7 @@ const CATEGOIRES_DIRECTORY_INITIAL_STATE={
     setName:{},
     setImage:{},
     setRemove:{},
+    setNewCategory:{},
 
 }
 
@@ -31,7 +32,9 @@ switch(type){
     case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_REMOVE_FAILD:return{...state,setRemove:payload}
     case CATEGORIES_DIRECTORY_TYPES.SET_CATEGORIES_IMAGE_SUCCES:return{...state,setRemove:"succes"}
 
-    
+    case CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_START:return{...state,setNewCategory:payload}
+    case CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_FAILD:return{...state,setNewCategory:payload}
+    case CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_SUCCES:return{...state,setNewCategory:'succes'}
 
 
     default :return state

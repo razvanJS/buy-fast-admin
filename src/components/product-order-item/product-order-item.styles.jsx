@@ -55,6 +55,58 @@ border-bottom: 1px solid darkgrey;
 padding: 15px 0;
 font-size: 22px;
 align-items: center;
+
+@media only screen and (device-width: 1024px) ,
+and (device-height: 1368px) ,
+ { 
+ margin-left:10px;
+ width:125% ;
+ ${SpanName} ,${SpanPrice},${QuantityContainer},${SpantTotalPrice}{
+   width: 12vh;
+   font-size:18px ;
+   left:-50px;
+ }
+ ${Image}{
+   margin-left:15px
+ }
+ ${SpanPrice}{
+   left:45px;
+ }
+ ${SpantTotalPrice}{
+   left:20px;
+ }
+ ${QuantityContainer}{
+   left:-25px;
+ }
+}
+
+@media only screen and (device-width: 1024px) ,
+and (device-height: 600px){
+  margin-left:10px;
+  width:125%;
+  ${SpanName} ,${SpanPrice},${QuantityContainer},${SpantTotalPrice}{
+    width: 12vh;
+    font-size:20px ;
+    margin-left:89px;
+
+  }
+  ${SpanName}{
+    margin-left:25px;
+  }
+  ${QuantityContainer}{
+    margin-left:135px;
+  }
+  
+}
+@media only screen and (device-width: 768px) ,
+and (device-height: 1024px){
+  ${SpanName} ,${SpanPrice},${QuantityContainer},${SpantTotalPrice}{
+    width: 12vh;
+    font-size:20px ;
+    margin-left:20px;
+
+  }
+}
 @media screen and (width:1280px){
   ${SpantTotalPrice}{
     left:100px;
@@ -116,12 +168,12 @@ align-items: center;
 }
 
 @media screen and (width:768px) {
-  margin-left:1.5rem ;
+  margin-left:-5rem ;
   
 }
 @media screen and (width:540px) {
-  margin-left:1.5rem ;
-  
+  margin-left:.1rem ;
+ 
 }
 
  @media screen and (width:280px) {
