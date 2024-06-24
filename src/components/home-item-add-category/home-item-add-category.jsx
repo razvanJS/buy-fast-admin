@@ -17,7 +17,12 @@ const HomeItemAddCategory=()=>{
         <ItemBody>
            <br/>
             {isAddCategoryBtnClicked?<>
-               <AddCategoryForm></AddCategoryForm>
+               <AddCategoryForm 
+                isAddCategoryBtnClicked={isAddCategoryBtnClicked}
+                setIsAddCategoryBtnClicked={setIsAddCategoryBtnClicked}
+                 
+                 
+                 ></AddCategoryForm>
             </>:<Button onClick={()=>setIsAddCategoryBtnClicked(true)}>ADD CATEGORY</Button>}
           
             
