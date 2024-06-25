@@ -2,7 +2,7 @@ import { ItemContainer,BackgroundImage,ItemBody } from "../home-item-container/h
 import Button from "../button/button.component"
 import { useState } from "react"
 
-import AddCategoryForm from "../add-category-form/add-category-form.componet"
+import AddCategoryForm from "../add-category-form/add-category-directory-form.componet"
 
 const HomeItemAddCategory=()=>{
     

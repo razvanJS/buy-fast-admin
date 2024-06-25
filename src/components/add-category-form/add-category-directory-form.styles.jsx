@@ -14,6 +14,7 @@ button{
 };
 input{
   height:1vh;
+
 }
 
 // /Iphone SE/

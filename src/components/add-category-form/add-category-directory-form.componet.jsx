@@ -1,20 +1,20 @@
 import Button from "../button/button.component";
 import InputForm from "../input-form/input-form.component";
-import { FormDiv } from "./add-category-form.styles";
+import { FormDiv } from "./add-category-directory-form.styles";
 import { RemoveXdivRename } from "../category-rename/category-rename.styles";
-import { useEffect, useState } from "react";
-import { categoriesDirectoryLength } from "../../store/categoriesDirectory/categories-directory-selectors";
+import {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddNewCategoryStart } from "../../store/categoriesDirectory/categories-directory-actions";
 import { categoriesDirectoryDataSelect } from "../../store/categoriesDirectory/categories-directory-selectors";
+import { categoriesDirectoryLength } from "../../store/categoriesDirectory/categories-directory-selectors";
 const AddCategoryForm=({isAddCategoryBtnClicked,setIsAddCategoryBtnClicked})=>{
-
-   const addCategoryForm={id:'',title:'',imageUrl:''}
+    const categoriesLenght=useSelector(categoriesDirectoryLength)
+   const addCategoryForm={id:categoriesLenght+1,title:'',imageUrl:''}
    const [addCategory,setAddCategory]=useState(addCategoryForm)
    const {id,title,imageUrl}=addCategory
     const dispatch=useDispatch()
    const categoriesData=useSelector(categoriesDirectoryDataSelect)
-
+   
 const changeEvent=(e)=>{
     const nameChange=e.target.name
     const valueChane=e.target.value

@@ -12,6 +12,7 @@ form ${Input}{
   margin:0 auto;
   width:50%;
   font-weight:bolder;
+  text-align:center;
   
 }
 button{

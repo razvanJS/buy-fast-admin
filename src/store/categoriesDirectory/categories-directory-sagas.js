@@ -11,7 +11,9 @@ import {fetchCategoriesDirectorySuccess,
     setCategoriesRemoveSucces,
     setCategoriesRemoveFaild,
     setAddNewCategorySucces,
-    setAddNewCategoryFaild
+    setAddNewCategoryFaild,
+    setChangeElementOrderSucces,
+    setChangeElementOrderFaild
     } from "./categories-directory-actions";
 import { ca } from "date-fns/locale";
 
@@ -100,6 +102,11 @@ function *setAddNewCategory(action){
     for(let i=0;i<categoriesData.length;i++){
         if(categoriesData[i].id===data.id)return alert('The ID of the Element already exist');
     }
+    //ID INPUT MUST BE A NUMBER
+    const nrIdIput=Number(data.id)
+
+    //idIput="sdsa"->Nan false value
+    if(!nrIdIput)return alert('ID INPUT MUST BE A NUMBER');
     
     const categoriesObj={title:data.title}
   
@@ -116,7 +123,42 @@ function *setAddNewCategory(action){
     
 }
 
+function* setChangeElementOrder(action){
 
+    const{payload:{categories,category,changeOrderInput}}=action
+     
+
+          try{
+           //Element [{id:2}] to be change the id value
+           //find the element we want to change the order in the Categories 
+           const elementToChangeOrder=categories.filter(value=>value.id===changeOrderInput)
+           
+
+           if(elementToChangeOrder.length===0)return alert('The Id of the Element dosen`t exist');
+           //if the id o the element we want to change dosen`t exsit the array filterd is emty return the alert
+           if(category.id===changeOrderInput)return alert("Plase choose a new id")
+            //if the id its the same 
+   
+           //changing the order between the selected element and the previous element
+           yield updateFieldOnDb('directory',category.title,'id',changeOrderInput)//1(2) 1->2
+           yield updateFieldOnDb('directory',elementToChangeOrder[0].title,'id',category.id)//2(1) 2->1
+           yield put(setChangeElementOrderSucces()) 
+           yield window.location.reload()
+           
+
+          }
+          catch(err){
+            yield put(setChangeElementOrderFaild(err.message))
+
+          }
+           
+           
+    
+}
+
+function *onSetChangeElmentOrder(){
+    yield takeLatest(CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_START,setChangeElementOrder)
+}
 function *onGetCategoriesFromDb(){
     yield takeLatest(CATEGORIES_DIRECTORY_TYPES.FETCH_CATEGORIES_DIRECTORY_START,getCategoriesFromDb)
  }
@@ -143,5 +185,7 @@ export function *categiresDirectorySaga(){
         ,call(onSetCategoryImage)
         ,call(onSetRemoveCategory)
         ,call(onSetAddNewCategory)
+        ,call(onSetChangeElmentOrder)
+
     ])
 }

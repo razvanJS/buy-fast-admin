@@ -22,3 +22,8 @@ export const setCategoriesRemoveSucces=()=>createAction(CATEGORIES_DIRECTORY_TYP
 export const setAddNewCategoryStart=(data,categoriesData)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_START,{data,categoriesData})
 export const setAddNewCategoryFaild=(err)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_FAILD,err)
 export const setAddNewCategorySucces=()=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_SUCCES)
+
+export const setChangeElementOrderStart=(categories,category,changeOrderInput)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_START,{categories,category,changeOrderInput})
+export const setChangeElementOrderFaild=(err)=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_FAILD,err)
+export const setChangeElementOrderSucces=()=>createAction(CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_SUCCES)
+

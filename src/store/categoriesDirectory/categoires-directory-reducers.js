@@ -9,6 +9,7 @@ const CATEGOIRES_DIRECTORY_INITIAL_STATE={
     setImage:{},
     setRemove:{},
     setNewCategory:{},
+    setChangeElementOrder:{},
 
 }
 
@@ -36,6 +37,9 @@ switch(type){
     case CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_FAILD:return{...state,setNewCategory:payload}
     case CATEGORIES_DIRECTORY_TYPES.SET_ADD_NEW_CATEGORY_SUCCES:return{...state,setNewCategory:'succes'}
 
+    case CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_START:return{...state, setChangeElementOrder:payload}
+    case CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_FAILD:return{...state,setChangeElementOrder:payload}
+    case CATEGORIES_DIRECTORY_TYPES.SET_CHANGE_ELEMENT_ORDER_SUCCES:return{...state,setChangeElementOrder:'succes'}
 
     default :return state
 

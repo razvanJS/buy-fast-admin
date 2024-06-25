@@ -2,9 +2,7 @@ import { ItemContainer,BackgroundImage } from "./home-item-container-style"
 import { useState } from "react"
 
 import HomeItemBodyContainer from "../home-item-body-container/home-item-body.componet"
-import { useSelector } from "react-redux"
-import { categoriesLoading } from "../../store/categoriesDirectory/categories-directory-selectors"
-import Spinner from "../spinner/spinner.componet"
+
 
 const HomeItemCotainer=({category})=>
 
@@ -12,15 +10,22 @@ const HomeItemCotainer=({category})=>
  const [isRenameBtnClick,setIsRenameBtnClick]=useState(false)
  const [isImageDlbCliked,setIsImageDblCkicked]=useState(false)
  const [isRemoveXclick,setIsRemoveXclick]=useState(false)
+ const [isItemBodyClick,setIsItemBodyClick]=useState(false)
 
+const backgroundImageDblClickEvent=()=>{
+    return setIsImageDblCkicked(true)
+}
 
-
- 
 return (
 
     <ItemContainer>
-        <BackgroundImage onDoubleClick={ ()=>isImageDlbCliked?setIsImageDblCkicked(false):setIsImageDblCkicked(true) } 
-         style={{backgroundImage:`url(${category.imageUrl})`}}></BackgroundImage>
+    
+        <BackgroundImage 
+         onDoubleClick={backgroundImageDblClickEvent} 
+         style={{backgroundImage:`url(${category.imageUrl})`}}>
+
+         </BackgroundImage>
+           
          <HomeItemBodyContainer 
          category={category} 
          isRemoveXclick={isRemoveXclick}
@@ -29,8 +34,12 @@ return (
          setIsImageDblCkicked={setIsImageDblCkicked}
          isRenameBtnClick={isRenameBtnClick}
          setIsRenameBtnClick={setIsRenameBtnClick}
+         isItemBodyClick={isItemBodyClick}
+         setIsItemBodyClick={setIsItemBodyClick}
+        
          
          ></HomeItemBodyContainer>
+        
     </ItemContainer>
 )
 
