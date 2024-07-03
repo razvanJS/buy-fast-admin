@@ -5,26 +5,32 @@ import { GlobalStyle } from './App.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrdersStart} from './store/orders/orders-actions.js';
 import { fetchCategoiresDirectoryStart } from './store/categoriesDirectory/categories-directory-actions.js';
+import { fetchProductsDataStart } from './store/products/products-actions.js';
 import { useEffect } from 'react';
 
 import OrdersDetailsRoute from './routs/orders/ordersDetailsRoute.component.jsx';
 import Home from './routs/home/home-componet.jsx';
-import { categoriesDirectoryLength } from './store/categoriesDirectory/categories-directory-selectors.js';
+import IndexRoutes from './routs/index-routes/index-routes.jsx';
+
 const App=()=>{
-   const length=useSelector(categoriesDirectoryLength)
-   console.log(length)
+
+   
   const dispatch=useDispatch()
 
   useEffect(()=>{
-    dispatch(fetchCategoiresDirectoryStart ())
+    dispatch(fetchCategoiresDirectoryStart())
   },[])
 
+  useEffect(()=>{
+    dispatch(fetchProductsDataStart())
+
+   })
   useEffect(()=>{
     dispatch(fetchOrdersStart())
    },[])
   
  
-
+  
   
  
 
@@ -32,8 +38,8 @@ const App=()=>{
 <>
     <Routes>
     <Route path='/'element={<Navigation/>}>
-      <Route index element={<Home/>}></Route>
-
+      <Route path='/' element={<Home/>}></Route>
+      <Route path='/*' element={<IndexRoutes/>}></Route>
      <Route path='/orders/*' element={<OrdersDetailsRoute/>}></Route> 
      <Route path='/auth' element={<p>SignIn</p>}></Route> 
    

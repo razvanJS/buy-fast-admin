@@ -1,7 +1,11 @@
 import { RemoveXdivRename } from "../category-rename/category-rename.styles"
 import Button from "../button/button.component"
 
+import { useNavigate } from "react-router"
+
 const HomeItemBodyDefault=({category,isRemoveXclick,setIsRemoveXclick,setIsRenameBtnClick})=>{
+  
+     const nav=useNavigate()
 
     const removeXdivEvent=(e)=>{
         e.stopPropagation()
@@ -11,11 +15,15 @@ const HomeItemBodyDefault=({category,isRemoveXclick,setIsRemoveXclick,setIsRenam
         e.stopPropagation()
       return  setIsRenameBtnClick(true)
     }
+    const tilteClickEvent=(e)=>{
+        e.stopPropagation()
+        nav(`/${category.title}`)
+    }
 
     return(
         <>
     <RemoveXdivRename onClick={removeXdivEvent}>&#10006;</RemoveXdivRename>
-    <h2 onClick={(e)=>e.stopPropagation()}>{category.title.toUpperCase()}</h2>
+    <h2 onClick={tilteClickEvent}>{category.title.toUpperCase()}</h2>
     <Button onClick={btnEvent}>Rename</Button>
     </>
     )

@@ -25,7 +25,7 @@ const ChangeDirectoryCategoryOrder=({setIsItemBodyClick,category})=>{
     return(
         <>
          <NewBodyItem>
-            <RemoveXdivRename onClick={removeXevent}>x</RemoveXdivRename>
+            <RemoveXdivRename onClick={removeXevent}>&#10006;</RemoveXdivRename>
             <Input type='text' value={changeOrderInput} onChange={inputOnChangeEvent}  maxLength={'1'}></Input>
             <Button onClick={submitEvent}>Order Change</Button>
 

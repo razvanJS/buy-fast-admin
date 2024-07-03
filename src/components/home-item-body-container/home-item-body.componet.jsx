@@ -77,7 +77,9 @@ const HomeItemBodyContainer=(
 
  return (
 
-    <ItemBody onClick={()=>setIsItemBodyClick(true) }
+    <ItemBody onClick={()=>{
+      
+      setIsItemBodyClick(true)} }
        
       >
       
