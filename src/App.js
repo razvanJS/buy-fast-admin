@@ -11,15 +11,17 @@ import { useEffect } from 'react';
 import OrdersDetailsRoute from './routs/orders/ordersDetailsRoute.component.jsx';
 import Home from './routs/home/home-componet.jsx';
 import IndexRoutes from './routs/index-routes/index-routes.jsx';
+import { productsDataSelect } from './store/products/products-selectors.js';
 
 const App=()=>{
 
-   
+  
   const dispatch=useDispatch()
 
   useEffect(()=>{
     dispatch(fetchCategoiresDirectoryStart())
   },[])
+
 
   useEffect(()=>{
     dispatch(fetchProductsDataStart())

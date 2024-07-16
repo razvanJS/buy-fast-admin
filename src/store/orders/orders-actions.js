@@ -23,3 +23,6 @@ export const fetchorderDetailsActionSucces=(order)=>{
 export const fetchorderDetailsActionFaild=(err)=>{
   return  createAction(ORDERS_TYPES.FETCH_ORDERS_DETAILS_FAILD,err)
 }
+
+
+

@@ -1,14 +1,34 @@
 import { takeLatest,all,call,put} from "redux-saga/effects";
 import { PRODUCTS_TYPES } from "./products-types";
-import { getOrdersFromDb } from "../../utils/firebase.utils";
-import { fetchProductsDataFaild, fetchProductsDataSucces, setProductClickedFaild, setProductClickedSucces } from "./products-actions";
+import { getOrdersFromDb,updateProductDetails,deleteProduct ,addProductToDb} from "../../utils/firebase.utils";
+import { fetchProductsDataFaild,
+         fetchProductsDataSucces,
+         setChangeProductDetailsFaild,
+         setChangeProductDetailsSucces,
+         setRemoveProductFaild,
+         setRemoveProductSucces,
+         setAddProductFaild,
+         setAddProductSucces,
+        
+        } from "./products-actions";
+
 
 
 function* getProductsData(){
 
     try{
       const productsData=yield call(getOrdersFromDb,'categories')
-      yield put(fetchProductsDataSucces(productsData))
+      const prductsFilterd=productsData.map(item=>{
+        const obj={...item,id:Number(item.id)}
+        return obj
+      }).sort((a,b)=>a.id-b.id)
+
+ 
+
+      yield put(fetchProductsDataSucces(prductsFilterd))
+      
+     
+ 
     }
 
     catch(err){
@@ -18,6 +38,72 @@ function* getProductsData(){
  
 }
 
+function *setProductDetails(action){
+
+const{payload:{collectionName,docId,docName,newObj}}=action
+
+try{
+
+       yield call(updateProductDetails,collectionName,docName,docId,newObj)
+       yield window.location.reload()
+       yield put(setChangeProductDetailsSucces())
+
+}
+
+catch(err){
+  yield put(setChangeProductDetailsFaild(err.message))
+}
+
+
+}
+
+function *setRemoveProduct(action){
+   
+  const {payload:{collectionName,docName,itemId}} =action
+
+  
+  try{
+    yield call(deleteProduct,collectionName,docName,itemId)
+    yield  window.location.reload()
+    yield put(setRemoveProductSucces())
+
+  }
+  catch(err){
+   yield put(setRemoveProductFaild(err.message))
+  }
+
+}
+
+function *setAddProduct(action){
+  const {payload:{collectionName,docName,newObj}}=action
+  console.log(collectionName,docName,newObj)
+  try{
+    yield call(addProductToDb,collectionName,docName,newObj)
+    yield window.location.reload()
+    yield put(setAddProductSucces())
+
+  }
+
+  catch(err){
+    yield put(setAddProductFaild(err.message))
+
+  }
+
+}
+
+
+
+function *onSetAddProduct(){
+  yield takeLatest(PRODUCTS_TYPES.SET_ADD_PRODUCT_START,setAddProduct)
+}
+
+function *onSetRemoveProduct(){
+  yield takeLatest(PRODUCTS_TYPES.SET_REMOVE_PRODUCT_START,setRemoveProduct)
+}
+
+function *onSetProductDatails(){
+  yield takeLatest(PRODUCTS_TYPES.SET_CHANGE_PRODUCT_DETAILS_START,setProductDetails)
+}
 
 
 function *onGetProductsData(){
@@ -26,6 +112,12 @@ function *onGetProductsData(){
 }
 
 
-export function * productsSaga(){
-   yield all([call(onGetProductsData)])
+export function *productsSaga(){
+   yield all([
+    call(onGetProductsData)
+    ,call(onSetProductDatails)
+    ,call(onSetRemoveProduct)
+    ,call(onSetAddProduct)
+    
+  ])
 }

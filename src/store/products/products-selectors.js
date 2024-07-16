@@ -7,4 +7,12 @@ export const productsDataSelect=createSelector(
 
 
 )
+export const lastIDProducts=createSelector(
+  [productsReducer],
+  (slice)=>slice.lastId
+
+
+)
+
+
 

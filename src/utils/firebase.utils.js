@@ -69,6 +69,67 @@ export const deleteDocFromDb=async(colectionName,uid)=>{
 
  }
 
+
+
+ export const addProductToDb=async(collectionName,docName,newItems)=>{
+   try{
+      const docRef=doc(db,collectionName,docName)
+      const docSnapShot=await getDoc(docRef)
+      if(!docSnapShot.exists())return;
+      await updateDoc(docRef,{
+         items:newItems
+      })
+   }
+   catch(err){
+      alert(err.message)
+   }
+ }
+
+ export const updateProductDetails=async(collectionName,docName,docId,newObj)=>{
+   try{
+      const docRef=doc(db,collectionName,docName)
+      const docSnapShot=await getDoc(docRef)
+      if(!docSnapShot.exists())return;
+      const docData=docSnapShot.data()
+      const newItems=docData.items.filter(item=>item.id!==docId)
+
+      const newDataItems=[newObj,...newItems]
+
+      await updateDoc(docRef,{
+         items:newDataItems
+      })
+
+
+
+   }
+   catch(err){
+      alert(err.message)
+   }
+ }
+
+export const deleteProduct=async(collectionName,docName,docId)=>{
+   try{
+      const oldDocRef=doc(db,collectionName,docName)
+      const oldDocSnapShot=await getDoc(oldDocRef)
+      if(!oldDocSnapShot.exists())return;
+      const docData=oldDocSnapShot.data()
+     
+      const filterItems=docData.items.filter((item,index)=>item.id!==docId)
+      
+      
+      
+      
+      await updateDoc(oldDocRef,{
+         items:filterItems
+      })
+      
+
+   }
+   catch(err){
+    alert(err.message)
+   }
+}
+
 export const updateDocumentDb=async(collectionName,documentName,title)=>{
    try{
   
@@ -112,6 +173,9 @@ catch(err){
 }
 
 }
+
+
+
 
 export const updateFieldOnDb=async(collectionName,docName,fildName,newFieldData)=>{
    const docRef=doc(db,collectionName,docName)

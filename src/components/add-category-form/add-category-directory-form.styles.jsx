@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ItemBody } from "../home-item-container/home-item-container-style";
 
 export const FormDiv=styled(ItemBody)`
-height:39vh;
+height:42vh;
 width:35vh;
 opacity:0.9;
 

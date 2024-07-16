@@ -108,7 +108,7 @@ function *setAddNewCategory(action){
     //idIput="sdsa"->Nan false value
     if(!nrIdIput)return alert('ID INPUT MUST BE A NUMBER');
     
-    const categoriesObj={title:data.title}
+    const categoriesObj={title:data.title,id:`0${data.id}`}
   
     try{
         yield call(addDocToDB,'directory',data)
@@ -131,17 +131,21 @@ function* setChangeElementOrder(action){
           try{
            //Element [{id:2}] to be change the id value
            //find the element we want to change the order in the Categories 
-           const elementToChangeOrder=categories.filter(value=>value.id===changeOrderInput)
+           console.log(categories,category,changeOrderInput)
+           const orderInput=Number(changeOrderInput)
+           const elementToChangeOrder=categories.filter(value=>value.id===orderInput)
            
 
            if(elementToChangeOrder.length===0)return alert('The Id of the Element dosen`t exist');
            //if the id o the element we want to change dosen`t exsit the array filterd is emty return the alert
-           if(category.id===changeOrderInput)return alert("Plase choose a new id")
+           if(category.id===orderInput)return alert("Plase choose a new id")
             //if the id its the same 
    
            //changing the order between the selected element and the previous element
-           yield updateFieldOnDb('directory',category.title,'id',changeOrderInput)//1(2) 1->2
+           yield updateFieldOnDb('directory',category.title,'id',orderInput)//1(2) 1->2
            yield updateFieldOnDb('directory',elementToChangeOrder[0].title,'id',category.id)//2(1) 2->1
+           yield updateFieldOnDb('categories',category.title,'id',`0${orderInput}`)
+           yield updateFieldOnDb('categories',elementToChangeOrder[0].title,'id',`0${category.id}`)
            yield put(setChangeElementOrderSucces()) 
            yield window.location.reload()
            

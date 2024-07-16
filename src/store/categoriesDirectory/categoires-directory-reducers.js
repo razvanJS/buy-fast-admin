@@ -10,6 +10,7 @@ const CATEGOIRES_DIRECTORY_INITIAL_STATE={
     setRemove:{},
     setNewCategory:{},
     setChangeElementOrder:{},
+    
 
 }
 
