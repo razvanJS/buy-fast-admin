@@ -5,6 +5,9 @@ export const ImageContainerChange=styled(RenameContainer)`
 
 form ${Input}{
     width:80%;
+    
 }
-
+button{
+    font-size:10px;
+    }
 `

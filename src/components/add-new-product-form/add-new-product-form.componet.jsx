@@ -3,7 +3,6 @@ import InputForm from "../input-form/input-form.component"
 import { FormContainerProduct } from "./add-new-product-form.styles"
 import { RemoveXdivRename } from "../category-rename/category-rename.styles"
 import { useEffect, useState } from "react"
-import { addProductToDb } from "../../utils/firebase.utils"
 import { setAddProductStart } from "../../store/products/products-actions"
 import { useDispatch, useSelector } from "react-redux"
 import { capitalize } from "../../assets/capitalizeString"
@@ -27,6 +26,7 @@ const AddNewProductForm=({item, newProductBtnClicked,setNewProductBtnClicket})=>
    useEffect(()=>{
     const setMaxIdFunction=()=>{
         const arrId=[]
+        if(!productsData[0])return 0;
         productsData.forEach(category => {
             if(!category.items)return;
             category.items.forEach(item=>{
@@ -35,6 +35,7 @@ const AddNewProductForm=({item, newProductBtnClicked,setNewProductBtnClicket})=>
             
             
         });
+        
          const maxIdNumber=arrId.reduce((value,acc)=>value>acc?value:acc,arrId[0])
          return maxIdNumber
     }
@@ -56,10 +57,10 @@ const AddNewProductForm=({item, newProductBtnClicked,setNewProductBtnClicket})=>
         value=capitalize(e.target.value)
     }
     
-   console.log(productsData)
+  
   
 
-      console.log(formProduct)
+     
        setFormProduct({...formProduct ,[name]:value,id:maxID+1})
 
 
@@ -72,7 +73,6 @@ const AddNewProductForm=({item, newProductBtnClicked,setNewProductBtnClicket})=>
          newProductsArray=[...item.items,formProduct]
     }
 
-    console.log(newProductsArray)
  
     // addProductToDb('categories',item.title,newProductsArray)
      dispatch(setAddProductStart('categories',item.title,newProductsArray))

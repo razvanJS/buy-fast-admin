@@ -11,7 +11,7 @@ import { categoriesDirectoryDataSelect } from "../../store/categoriesDirectory/c
 const RenameComponet=({setIsImageDblCkicked,setIsRenameBtnClick,categoryName})=>{
         const dispatch=useDispatch()
         const allCategories=useSelector(categoriesDirectoryDataSelect)
-        console.log(allCategories)
+       
     const[inputRenameValue,setInputRenameValue]=useState('')
     const setCategoriesNameEvent=(e)=>{
         

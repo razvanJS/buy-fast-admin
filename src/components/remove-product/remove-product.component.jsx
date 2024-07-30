@@ -17,11 +17,7 @@ return (
 <p>Are you certain that you wish to delete this product?</p>
 
 <Button onClick={()=>{
-  // const delDoc=async ()=>{
-  //   await deleteProduct('categories',product,itemId)
-  //   await window.location.reload()
-  // }
-  // delDoc()
+
   dispatch(setRemoveProductStart('categories',product,itemId))
 }}>Yes</Button>
 <Button onClick={()=>xCLickSet(false)}>No</Button>

@@ -2,7 +2,6 @@
 import { useState } from "react"
 import { Input } from "../input-form/input-form.styles"
 import { ImageProductChange } from "./change-image-product.styles"
-import { updateProductDetails } from "../../utils/firebase.utils"
 import { useParams } from "react-router"
 import { setChangeProductDetailsStart } from "../../store/products/products-actions"
 import { useDispatch } from "react-redux"

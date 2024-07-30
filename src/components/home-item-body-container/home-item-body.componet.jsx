@@ -8,6 +8,7 @@ import ChangeDirectoryCategoryOrder from "../change-category-directory-order/cha
 import { NewItemBody } from "../remove-category/remove-category.styled"
 import { ItemBody } from "../home-item-container/home-item-container-style"
 
+
 const HomeItemBodyContainer=(
     {
   category,
@@ -22,11 +23,11 @@ const HomeItemBodyContainer=(
  
 })=>{
 
-  
+
 
  if(isRemoveXclick){
 
-
+    
     return  ( 
 
    <NewItemBody>

@@ -1,5 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { ref,onValue } from "firebase/database";
+
+import
+ {getAuth,
+ signInWithEmailAndPassword,
+
+ 
+
+ } from "firebase/auth"
+
+
 import { 
     getFirestore,
     doc,
@@ -7,13 +16,18 @@ import {
     query,
     setDoc,
     collection,
-    writeBatch,
+   
     getDocs,
     deleteDoc,
     updateDoc,
-    deleteField,
+
+
+    
 
  } from "firebase/firestore";
+
+import { ADMIN_UID } from "../admin.uid";
+
 
  const firebaseConfig={
     apiKey: "AIzaSyCyRfRj44mCA5CICrX3t56lqmiY339r8A4",
@@ -26,8 +40,41 @@ import {
  }
 
 
-
  const firebaseApp=initializeApp(firebaseConfig)
+ export const auth=getAuth()
+
+
+export const signInEmail=async(email,password)=>{
+
+
+   try{
+     if(!email||!password)return;
+    const data= await signInWithEmailAndPassword(auth,email,password)
+    if(!data)return;
+    const {user}=data;
+    if(user.uid!==ADMIN_UID)return alert("Admin is not found in the datebase");
+   
+    return user;
+   }
+   
+   catch(err){
+   
+    
+    if(err.code==='auth/user-not-found'){
+     alert("User are not found in the datebase")
+    }
+    else if(err.code==='auth/wrong-password'){
+     alert("Password its wrong")
+    }
+    else {
+     alert(err.message)
+    }
+   
+    
+   }
+}
+
+
 
  export const db=getFirestore()
 

@@ -4,11 +4,12 @@ import { ordersDataSelect } from '../../store/orders/orders-selectors'
 import { OrderTitleName,OrderPreviewContainer ,OrderPreview} from './orderPreview.styles'
 import { sortDate } from '../../assets/sortDate'
 import OrderItem from '../order-item/order-item.componet'
+import NoOrders from '../no-orders/no-orders.componet'
 
  const PreviewOrders=()=>{
     const ordersData=useSelector(ordersDataSelect)
     const ordersSort=sortDate(ordersData)
-    console.log(ordersData)
+
     return (
         <OrderPreviewContainer>
   
@@ -17,19 +18,24 @@ import OrderItem from '../order-item/order-item.componet'
     <OrderTitleName>Orders</OrderTitleName>
  
     
-     
+    
          <OrderPreview>
+            {!ordersSort[0]?<NoOrders></NoOrders>:<>
+                {ordersSort.map(orderValue=>{   
 
-                    {ordersSort.map(orderValue=>{   
+return(
 
-                   return(
+<OrderItem key={orderValue.uid} orderValue={orderValue}/>
+
+) 
+ 
+})}
+
+            </>
+            
+            }
+                 
                   
-                  <OrderItem key={orderValue.uid} orderValue={orderValue}/>
-
-                   ) 
-                    
-                 })}
-
                   
                  </OrderPreview>
 

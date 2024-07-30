@@ -16,3 +16,7 @@ export const lastIDProducts=createSelector(
 
 
 
+export const isLoadingProductsSelector=createSelector(
+  [productsReducer],
+  (slice)=>slice.isLoadingProduct
+)

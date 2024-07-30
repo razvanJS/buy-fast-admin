@@ -1,12 +1,19 @@
 import { ItemContainer,BackgroundImage,ItemBody } from "../home-item-container/home-item-container-style"
-import Button from "../button/button.component"
 import { useState } from "react"
 
 import AddCategoryForm from "../add-category-form/add-category-directory-form.componet"
+import { currentUserSelect } from "../../store/admin-user/admin.selctors"
+import { useSelector } from "react-redux"
+import { AddCategoryBtn } from "./home-item-add-category.styled"
 
 const HomeItemAddCategory=()=>{
     
     const [isAddCategoryBtnClicked,setIsAddCategoryBtnClicked]=useState(false)
+    const currentUser=useSelector(currentUserSelect)
+    const btnAddCategoryEvent=()=>{
+        if(!currentUser)return alert('Only the administrator can add a new category For testing, you can use email: admin@gmail.com password: admin1234."')
+          return  setIsAddCategoryBtnClicked(true)
+        }
 
     return(<ItemContainer>
             
@@ -23,7 +30,7 @@ const HomeItemAddCategory=()=>{
                  
                  
                  ></AddCategoryForm>
-            </>:<Button onClick={()=>setIsAddCategoryBtnClicked(true)}>ADD CATEGORY</Button>}
+            </>:<AddCategoryBtn onClick={btnAddCategoryEvent}>ADD CATEGORY</AddCategoryBtn>}
           
             
         </ItemBody>

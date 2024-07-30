@@ -64,7 +64,7 @@ function *setTheCategoyTitle(action){
 function *setTheCategoryImage(action){
     const {payload:{categoryName,imageInput}}=action
  
-    console.log(categoryName,imageInput)
+
 
     try{
        yield call(updateFieldOnDb,'directory',categoryName,'imageUrl',imageInput)
@@ -97,7 +97,7 @@ function *setRemoveCategory(action){
 function *setAddNewCategory(action){
 
     const{payload:{data,categoriesData}}=action
-    console.log(data,categoriesData)
+   
 
     for(let i=0;i<categoriesData.length;i++){
         if(categoriesData[i].id===data.id)return alert('The ID of the Element already exist');
@@ -109,7 +109,7 @@ function *setAddNewCategory(action){
     if(!nrIdIput)return alert('ID INPUT MUST BE A NUMBER');
     
     const categoriesObj={title:data.title,id:`0${data.id}`}
-  
+     data.id=Number(data.id)
     try{
         yield call(addDocToDB,'directory',data)
         yield call(addDocToDB,'categories',categoriesObj)
@@ -131,7 +131,7 @@ function* setChangeElementOrder(action){
           try{
            //Element [{id:2}] to be change the id value
            //find the element we want to change the order in the Categories 
-           console.log(categories,category,changeOrderInput)
+    
            const orderInput=Number(changeOrderInput)
            const elementToChangeOrder=categories.filter(value=>value.id===orderInput)
            

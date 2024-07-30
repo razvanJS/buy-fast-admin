@@ -5,7 +5,8 @@ import { capitalize } from "../../assets/capitalizeString"
 import { useParams } from "react-router"
 
 import { setChangeProductDetailsStart } from "../../store/products/products-actions"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { currentUserSelect } from "../../store/admin-user/admin.selctors"
 
 const ProductChangeDetails=({ 
      item,
@@ -22,6 +23,7 @@ const ProductChangeDetails=({
     const {product}=useParams();
     const newItem={...item};
     const dispatch=useDispatch()
+    const currentUser=useSelector(currentUserSelect)
 
     const onChangeEvent=(e)=>{
         if(spanNameClick){
@@ -41,10 +43,10 @@ const ProductChangeDetails=({
    const onSubmitPrice=(e)=>{
     e.preventDefault()
 
-  
-
+            
+         if(!currentUser)return alert('The admin must be logged in,For testing, you can use email: admin@gmail.com password: admin1234."'); 
          const price=Number(newPrice)
-         if(price<0) return alert('Price must be a pozitive Number')
+         if(price<=0) return alert('Price must be a pozitive Number')
         else if(item.price===price)return alert('Add a new Price')
         else if(isNaN(price))return alert('The Price must be a Number')
           newItem.price=price
@@ -57,9 +59,9 @@ const ProductChangeDetails=({
   
    const onSubmitName=(e)=>{
        e.preventDefault()
+       if(!currentUser)return alert('The admin must be logged in,For testing, you can use email: admin@gmail.com password: admin1234."'); 
     if(item.name===newName)return alert('Add a new Name')
     const name=Number(newName)
-    console.log(name)
     if(!isNaN(name))return alert('The Name must be a String')
         newItem.name=newName
     dispatch(setChangeProductDetailsStart('categories',product,item.id,newItem))

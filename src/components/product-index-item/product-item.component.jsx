@@ -3,9 +3,12 @@ import Button from "../button/button.component"
 import { RemoveXdivRename } from "../category-rename/category-rename.styles"
 import RemoveProduct from "../remove-product/remove-product.component"
 import { useState } from "react"
-import { Input } from "../input-form/input-form.styles"
+
 import ProductChangeDetails from "../product-change-details/product-change-details.componet"
 import ChangeImageProduct from "../change-image-product/change-image-product.componet"
+import { currentUserSelect } from "../../store/admin-user/admin.selctors"
+import { useSelector } from "react-redux"
+
 const ItemProductIndex=({item})=>{
     const[xCLick,xCLickSet]=useState(false)
     const [spanNameClick,setSpanNameClick]=useState(false)
@@ -13,6 +16,7 @@ const ItemProductIndex=({item})=>{
     const [imageBtnClick,setImageBtnClick]=useState(false)
    
    const{imageUrl,name,price}=item
+   const currentUser=useSelector(currentUserSelect)
    const xEvent=()=>{
 
     if(!imageBtnClick){
@@ -33,7 +37,7 @@ const priceClickEvent=()=>setSpanPriceClick(true)
     return (
       
         <ProductCarTConatiner>
-           <RemoveXdivRename onClick={xEvent}>&#x2715;</RemoveXdivRename>
+           {currentUser?<RemoveXdivRename onClick={xEvent}>&#x2715;</RemoveXdivRename>:''}
        
         <img src={imageUrl} alt={name}></img>
         <ProductFooter>
@@ -54,7 +58,8 @@ const priceClickEvent=()=>setSpanPriceClick(true)
         </ProductFooter>
           {!xCLick?
           !imageBtnClick?
-           <Button onClick={()=>setImageBtnClick(true)} typebutton='inverted'>Change Image</Button>
+          
+           <Button onClick={()=>currentUser?setImageBtnClick(true):''} typebutton='inverted'>Change Image</Button>
            :<ChangeImageProduct item={item} imageBtnClick={imageBtnClick} setImageBtnClick={setImageBtnClick}/>:<RemoveProduct itemId={item.id} xCLickSet={xCLickSet}/>}
         
          

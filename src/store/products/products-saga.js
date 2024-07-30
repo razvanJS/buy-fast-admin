@@ -76,7 +76,7 @@ function *setRemoveProduct(action){
 
 function *setAddProduct(action){
   const {payload:{collectionName,docName,newObj}}=action
-  console.log(collectionName,docName,newObj)
+
   try{
     yield call(addProductToDb,collectionName,docName,newObj)
     yield window.location.reload()

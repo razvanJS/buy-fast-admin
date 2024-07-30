@@ -11,7 +11,9 @@ import { useEffect } from 'react';
 import OrdersDetailsRoute from './routs/orders/ordersDetailsRoute.component.jsx';
 import Home from './routs/home/home-componet.jsx';
 import IndexRoutes from './routs/index-routes/index-routes.jsx';
-import { productsDataSelect } from './store/products/products-selectors.js';
+import Auth from './routs/authentification/auth.componet.jsx';
+import { setCurrentUserStart } from './store/admin-user/admin.actions.js';
+
 
 const App=()=>{
 
@@ -30,10 +32,7 @@ const App=()=>{
   useEffect(()=>{
     dispatch(fetchOrdersStart())
    },[])
-  
- 
-  
-  
+
  
 
   return (
@@ -43,7 +42,7 @@ const App=()=>{
       <Route path='/' element={<Home/>}></Route>
       <Route path='/*' element={<IndexRoutes/>}></Route>
      <Route path='/orders/*' element={<OrdersDetailsRoute/>}></Route> 
-     <Route path='/auth' element={<p>SignIn</p>}></Route> 
+     <Route path='/auth' element={<Auth></Auth>}></Route> 
    
 
        

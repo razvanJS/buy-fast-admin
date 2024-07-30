@@ -10,7 +10,8 @@
 
 # production
 /build
-
+.env
+admin.uid.js
 # misc
 .DS_Store
 .env.local

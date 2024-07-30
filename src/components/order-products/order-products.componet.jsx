@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import { detailsDataSelect,ordersDataSelect} from "../../store/orders/orders-selectors"
+import { useSelector } from "react-redux"
+import { detailsDataSelect} from "../../store/orders/orders-selectors"
 import { CheckoutContainer,CheckoutHeader, HeaderBlock,SpanTotal} from "./order-products.styles"
 import ProductsItems from "../product-order-item/product-order-item.componet"
 
