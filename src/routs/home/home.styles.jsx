@@ -21,13 +21,8 @@ margin-top:1% ;
         
       }
     }
-   //  @media screen and (width:540px) {
-   //    display:grid;
-   //    grid-template-columns:repeat(1,1fr) ;
-   //     width: 110%;
-   //     margin-left:-1rem ;
-   //     display: flex;
-   //     flex-wrap: wrap;
-   //     justify-content: space-between;
-   //  }
+      @media only screen and (device-width:768px){
+  grid-template-columns:repeat(2,1fr);
+  }
+ 
 `

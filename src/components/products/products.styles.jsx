@@ -13,14 +13,17 @@ display: grid;
 grid-template-columns:repeat(5,1fr);
 column-gap: 20px;
 row-gap:40px;
+
 @media screen and (max-width:${breakepontTablet}) {
     margin-top:-2rem;
-      
+     
     grid-template-columns:repeat(4,1fr);
     button{
       font-size:11px ;
     }
+      
     @media screen and (width:768px) {
+  
       width:110% ;
       margin-left:-2.35rem ;
       column-gap: 13px;
@@ -30,8 +33,11 @@ row-gap:40px;
     }
   
 }
+     
   @media screen and (max-width:${breakepointMobile}) {
-    
+      @media only screen and (device-width:768px){
+  grid-template-columns:repeat(3,1fr);
+  }
     grid-template-columns:1fr;
     @media screen and (width:540px) {
       grid-template-columns:repeat(2,1fr);
