@@ -26,7 +26,7 @@ import {
 
  } from "firebase/firestore";
 
-import { ADMIN_UID } from "../admin.uid";
+import { ADMIN_UID } from "../adminUid";
 
 
  const firebaseConfig={
